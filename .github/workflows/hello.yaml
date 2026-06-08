@@ -20,8 +20,6 @@ on:
         type: boolean           # 参数类型：boolean（勾选框）
         default: true
 
-  push
-
 
 jobs:                              # 定义所有 Job
   say-hello:                       # Job 的 ID（自定义名称，同一 Workflow 内唯一）
