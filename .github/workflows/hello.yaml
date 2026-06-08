@@ -4,6 +4,24 @@ name: Hello World                  # Workflow 的名称，显示在 GitHub Actio
 
 on: push                           # 触发条件：任意分支有代码推送时触发
 
+workflow_dispatch:
+  inputs:
+    environment:             # 输入参数的名称（可在 steps 中通过 ${{ inputs.environment }} 引用）
+      description: '部署目标环境'   # 参数的描述，显示在手动触发的表单中
+      required: true          # 是否为必填项
+      default: 'staging'      # 默认值
+      type: choice            # 参数类型：choice（下拉选择）
+      options:
+        - staging             # 可选值
+        - production
+
+    run_tests:
+      description: '是否运行测试'
+      required: false
+      type: boolean           # 参数类型：boolean（勾选框）
+      default: true
+
+
 jobs:                              # 定义所有 Job
   say-hello:                       # Job 的 ID（自定义名称，同一 Workflow 内唯一）
     name: 打印问候语                 # Job 的显示名称（可选，不填则显示 Job ID）
